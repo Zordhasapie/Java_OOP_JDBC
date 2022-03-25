@@ -64,9 +64,9 @@ public class Npc_Lasname {
         this.tc = tc;
     }
 
-@Override
-public String toString(){
-    return Integer.toString(id)+": "+ Integer.toString(gender)+";"+name+";"+tc+";"+en;
-}
-    
+    @Override
+    public String toString() {
+        return Integer.toString(id) + ": " + Integer.toString(gender) + ";" + name + ";" + tc + ";" + en;
+    }
+
 }
