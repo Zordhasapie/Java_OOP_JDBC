@@ -10,6 +10,6 @@ package Main;
  */
 public class main {
     public static void main(String[] args) {
-        System.out.println("Con m? mày");
+        System.out.println("Finally can work with git in Netbeans. Damn it!!!");
     }
 }
