@@ -28,7 +28,8 @@ public class DB_Handler {
     public static final String insertQuery = "INSERT INTO NPC_Lastname"
             + " (id, gender, name, tc, en) VALUES "
             + " (?, ?, ?, ?, ?)";
-
+    
+    public static final String selectQuery = "select id,gender,name";
     public static Connection getConnection() {
         Connection conn = null;
         try {
