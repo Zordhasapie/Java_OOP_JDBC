@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 
 /**
  *
- * @author sangv
+ * @author Quang Sang <quangsang.red@gmail.com>
  */
 public class DB_Handler {
 
@@ -18,16 +18,16 @@ public class DB_Handler {
 
     private static final String createTableQuery = """
                                                    create table NPC_Lastname (
-                                                     id  int(3) primary key,
+                                                     id int(3) primary key,
+                                                     gender int(1),
                                                      name varchar(20),
-                                                     email varchar(20),
-                                                     country varchar(20),
-                                                     password varchar(20)
+                                                     tc varchar(20),
+                                                     en varchar(20)
                                                     );""";
-    
-    public static final String insertQuery = """
-                                             
-                                             """;
+
+    public static final String insertQuery = "INSERT INTO NPC_Lastname"
+            + " (id, gender, name, tc, en) VALUES "
+            + " (?, ?, ?, ?, ?)";
 
     public static Connection getConnection() {
         Connection conn = null;
@@ -57,7 +57,7 @@ public class DB_Handler {
         }
     }
 
-    public void createTable() throws SQLException {
+    public static void createTable(){
 
         System.out.println(createTableQuery);
         try ( Connection conn = getConnection();  Statement statement = conn.createStatement();) {
@@ -69,6 +69,21 @@ public class DB_Handler {
         }
 
     }
-    
-    
+
+    public static void pushData(int id, int gender, String name, String tc, String en){
+        System.out.println(insertQuery);
+        try ( Connection conn = getConnection();  PreparedStatement presta = conn.prepareStatement(insertQuery)) {
+            presta.setInt(1, id);
+            presta.setInt(2, gender);
+            presta.setString(3, name);
+            presta.setString(4, tc);
+            presta.setString(5, en);
+
+            System.out.println(presta);
+            presta.executeUpdate();
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+    }
+
 }
